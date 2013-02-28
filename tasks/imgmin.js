@@ -9,42 +9,57 @@
 'use strict';
 
 module.exports = function(grunt) {
+  var path = require('path');
+  var fs = require('fs');
+  var filesize = require('filesize');
+  //var shell = require('grunt-shell');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('imgmin', 'Your task description goes here.', function() {
+  grunt.registerMultiTask('imgmin', 'Use @rflynn\'s aggressive, lossy image optimizer, imgmin', function() {
     // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+    var options = this.options();
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
+    grunt.util.async.forEach(this.files, function (files, next) {
+      // Iterate over all specified file groups.
+      files.src.forEach(function(src) {
+        
+        function processed(err, result, code){
+          var saved, savedMsg;
+          grunt.log.writeln('code: ' + code);
+          if (err) {
+              grunt.log.writeln(err);
+          }
+
+          saved = originalSize - fs.statSync(dest).size;
+
+          if (result.stderr.indexOf('already optimized') !== -1 || saved < 10) {
+              savedMsg = 'already optimized';
+          } else {
+              savedMsg = 'saved ' + filesize(saved);
+          }
+
+          grunt.log.writeln('✔ '.green + src + (' (' + savedMsg + ')').grey);
+          next();
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
 
-      // Handle options.
-      src += options.punctuation;
+        var originalSize = fs.statSync(src).size,
+            dest = files.dest,
+            cp;
+        if (path.extname(dest) === '') {
+            dest = path.join(dest, path.basename(src));
+        }
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+        cp = grunt.util.spawn({
+            cmd: 'imgmin',
+            args: [src, dest]
+        }, processed);
+        
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
+      });
+    }.bind(this), this.async());
+
   });
 
 };
