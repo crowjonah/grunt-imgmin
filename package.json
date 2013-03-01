@@ -39,6 +39,13 @@
     "grunt": "~0.4.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "imgmin",
+    "image",
+    "img",
+    "jpg",
+    "png",
+    "optimization",
+    "optimize"
   ]
 }
