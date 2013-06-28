@@ -26,7 +26,7 @@ var fs = require('fs');
 exports.imgmin = {
   minifyPng: function (test) {
     test.expect(1);
-    console.log('process.cwd:', process.cwd());
+
     var actual = fs.statSync(process.cwd() + '/tmp/sublime.png').size;
     var original = fs.statSync(process.cwd() + '/test/fixtures/sublime.png').size;
     test.ok(actual > 0 && actual < original, 'should minify PNG images');
