@@ -48,5 +48,9 @@
     "png",
     "optimization",
     "optimize"
-  ]
+  ],
+  "dependencies": {
+    "coveralls": "~2.0.16",
+    "mocha-lcov-reporter": "0.0.1"
+  }
 }
