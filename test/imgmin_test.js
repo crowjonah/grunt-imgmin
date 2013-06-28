@@ -26,9 +26,9 @@ var fs = require('fs');
 exports.imgmin = {
   minifyPng: function (test) {
     test.expect(1);
-
-    var actual = fs.statSync('tmp/sublime.png').size;
-    var original = fs.statSync('test/fixtures/sublime.png').size;
+    console.log('process.cwd:', process.cwd());
+    var actual = fs.statSync(process.cwd() + '/tmp/sublime.png').size;
+    var original = fs.statSync(process.cwd() + '/test/fixtures/sublime.png').size;
     test.ok(actual > 0 && actual < original, 'should minify PNG images');
 
     test.done();
@@ -36,8 +36,8 @@ exports.imgmin = {
   minifyJpg: function (test) {
     test.expect(1);
 
-    var actual = fs.statSync('tmp/polaroid.jpg').size;
-    var original = fs.statSync('test/fixtures/polaroid.jpg').size;
+    var actual = fs.statSync(process.cwd() + '/tmp/polaroid.jpg').size;
+    var original = fs.statSync(process.cwd() + '/test/fixtures/polaroid.jpg').size;
     test.ok(actual > 0 && actual  < original, 'should minify JPG images');
 
     test.done();
