@@ -1,4 +1,5 @@
 # grunt-imgmin
+[![Build Status](https://travis-ci.org/crowjonah/grunt-imgmin.png?branch=master)](https://travis-ci.org/crowjonah/grunt-imgmin)
 
 Use rflynn's aggressive, lossy image optimizer, imgmin, in grunt! Unfortunately, you'll have to deal with [the dependencies](https://github.com/rflynn/imgmin) on your own, and it's a particularly wiley bunch. This is just a wrapper to automate running it on a buncha files.
 

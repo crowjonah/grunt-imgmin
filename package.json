@@ -26,7 +26,8 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt travis --verbose"
+    "test": "grunt travis --verbose",
+    "coveralls": "jscoverage tasks && QUICKSORT_COV=1 nodeunit --reporter=lcov test | coveralls"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
@@ -35,8 +36,10 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-shell": "~0.2.1",
-    "grunt": "~0.4.0",
-    "filesize": "~1.9.3"
+    "filesize": "~1.9.3",
+    "jscoverage": "~0.3.7",
+    "coveralls": "~2.0.16",
+    "nodeunit": "~0.8.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
