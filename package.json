@@ -1,7 +1,7 @@
 {
   "name": "grunt-imgmin",
   "description": "Use rflynn's aggressive, lossy image optimizer, imgmin.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/crowjonah/grunt-imgmin",
   "author": {
     "name": "Crow Norlander",
@@ -36,7 +36,6 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-shell": "~0.2.1",
-    "filesize": "~1.9.3",
     "jscoverage": "~0.3.7",
     "coveralls": "~2.0.16",
     "nodeunit": "~0.8.1"
@@ -56,6 +55,7 @@
   ],
   "dependencies": {
     "coveralls": "~2.0.16",
-    "mocha-lcov-reporter": "0.0.1"
+    "mocha-lcov-reporter": "0.0.1",
+    "filesize": "^3.1.3"
   }
 }
