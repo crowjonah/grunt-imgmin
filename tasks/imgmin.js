@@ -1,24 +1,11 @@
-/*
- * grunt-imgmin
- * https://github.com/crowjonah/grunt-imgmin
- *
- * Copyright (c) 2013 Crow Norlander
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 module.exports = function(grunt) {
   var path = require('path');
   var fs = require('fs');
   var filesize = require('filesize');
-  //var shell = require('grunt-shell');
-
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('imgmin', 'Use @rflynn\'s aggressive, lossy image optimizer, imgmin', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options();
 
     grunt.util.async.forEach(this.files, function (files, next) {
@@ -27,10 +14,18 @@ module.exports = function(grunt) {
         
         function processed(err, result, code){
           var saved, savedMsg;
-          grunt.log.writeln('code: ' + code);
+          
           if (err) {
-              grunt.log.writeln(err);
+              grunt.log.error('Error code: ' + code);
+              grunt.log.error(err);
+              if (code === 127) {
+                  grunt.log.error('Make sure you\'ve installed `imgmin` properly: https://github.com/rflynn/imgmin');
+              }
           }
+          else {
+            grunt.log.writeln('code: ' + code);
+          }
+          
 
           saved = originalSize - fs.statSync(dest).size;
 

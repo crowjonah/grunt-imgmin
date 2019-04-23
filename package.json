@@ -8,41 +8,29 @@
     "email": "crowjonah@gmail.com",
     "url": "http://crowjonah.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:crowjonah/grunt-imgmin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/crowjonah/grunt-imgmin/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/crowjonah/grunt-imgmin/blob/master/LICENSE-MIT"
-    }
-  ],
+  "repository": "git@github.com:crowjonah/grunt-imgmin.git",
+  "license": "MIT",
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=6.0"
   },
   "scripts": {
-    "test": "grunt travis --verbose",
+    "test": "grunt && grunt travis --verbose",
     "coveralls": "jscoverage tasks && QUICKSORT_COV=1 nodeunit --reporter=lcov test | coveralls"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-cli": "~0.1",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-shell": "~0.2.1",
     "jscoverage": "~0.3.7",
     "coveralls": "~2.0.16",
     "nodeunit": "~0.8.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
-  },
+		"grunt": ">=1"
+	},
   "keywords": [
     "gruntplugin",
     "imgmin",
